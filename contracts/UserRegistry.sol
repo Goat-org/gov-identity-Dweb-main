@@ -2,10 +2,10 @@ pragma solidity ^0.5.16;
 
 contract UserRegistry {
     struct User {
-        string firstName;
-        string surname;
-        string email;
-        bytes32 passwordHash;
+        string adminFirstName;
+        string adminSurname;
+        string adminEmail;
+        bytes32 adminPassword;
     }
 
     mapping(address => User) public users;
@@ -14,32 +14,32 @@ contract UserRegistry {
 
     // Register a new user
     function registerUser(
-        string memory _firstName, 
-        string memory _surname, 
-        string memory _email, 
-        bytes32 _passwordHash
+        string memory _adminFirstName, 
+        string memory _adminSurname, 
+        string memory _adminEmail, 
+        bytes32 _adminPassword
     ) 
         public 
     {
-        require(bytes(users[msg.sender].email).length == 0, "User already registered");
+        require(bytes(users[msg.sender].adminEmail).length == 0, "User already registered");
         
-        users[msg.sender] = User(_firstName, _surname, _email, _passwordHash);
-        emit UserRegistered(msg.sender, _email);
+        users[msg.sender] = User(_adminFirstName, _adminSurname, _adminEmail, _adminPassword);
+        emit UserRegistered(msg.sender, _adminEmail);
     }
 
     // Login user by checking email and password hash
-    function loginUser(string memory _email, bytes32 _passwordHash) public view returns (bool) {
+    function loginUser(string memory _adminEmail, bytes32 _adminPassword) public view returns (bool) {
         User memory user = users[msg.sender];
         return (
-            keccak256(abi.encodePacked(user.email)) == keccak256(abi.encodePacked(_email)) &&
-            user.passwordHash == _passwordHash
+            keccak256(abi.encodePacked(user.adminEmail)) == keccak256(abi.encodePacked(_adminEmail)) &&
+            user.adminPassword == _adminPassword
         );
     }
 
     // Get user details by address
     function getUser(address _userAddress) public view returns (string memory, string memory, string memory) {
         User memory user = users[_userAddress];
-        require(bytes(user.email).length != 0, "User not found");
-        return (user.firstName, user.surname, user.email);
+        require(bytes(user.adminEmail).length != 0, "User not found");
+        return (user.adminFirstName, user.adminSurname, user.adminEmail);
     }
 }
