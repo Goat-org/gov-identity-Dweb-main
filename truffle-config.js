@@ -46,6 +46,14 @@
 
 // const HDWalletProvider = require('@truffle/hdwallet-provider');
 
+// require('dotenv').config();
+// const { MNEMONIC, PROJECT_ID } = process.env;
+
+// const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+const browserSync = require('browser-sync').create();
+const { exec } = require('child_process');
+
 module.exports = {
   networks: {
     development: {
@@ -59,5 +67,27 @@ module.exports = {
       enabled: true,
       runs: 200
     }
+  },
+  // Add Browsersync configuration
+  afterRun: function(done) {
+    // Start your PHP server or any other backend server
+    exec('php -S localhost:8000', (err, stdout, stderr) => {
+      if (err) {
+        console.error(`Error starting PHP server: ${stderr}`);
+        return;
+      }
+      console.log(`PHP server started: ${stdout}`);
+
+      // Initialize Browsersync to proxy your PHP server
+      browserSync.init({
+        proxy: 'localhost:8000', // Proxy your PHP server running on localhost:8000
+        port: 3000, // Browsersync will serve on port 3000
+        files: ["./admin/**/*", "./build/contracts/**/*"], // Watch for changes in these directories
+        notify: false,
+        open: true
+      });
+
+      done(); // Signal Truffle that the process is done
+    });
   }
-}
+};
