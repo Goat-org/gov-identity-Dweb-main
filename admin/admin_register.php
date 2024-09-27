@@ -96,7 +96,7 @@ include("server/get_admin_register.php");
         ];
 
         // Address of the deployed contract
-        const contractAddress = '0x27bc7bb2Af054BbA28d5Da606d0b24fe9F239436'; // Replace with your contract address
+        const contractAddress = '0xc112B71eB2514AE5d1793A4eF9E5E443e0c8F10c'; // Replace with your contract address
 
         // Create contract instance
         const contract = new web3.eth.Contract(abi, contractAddress);

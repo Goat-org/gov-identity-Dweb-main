@@ -1,0 +1,21 @@
+{
+    "name": "goat-org/gov-identity-dweb-main",
+    "description": "Blockchain identity management Powered By Ethereum",
+    "type": "project",
+    "require": {
+        "web3p/web3.php": "^0.3.2"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "GoatOrg\\GovIdentityDwebMain\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Goat.org",
+            "email": "hangwanishavhani17@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}

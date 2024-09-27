@@ -4,27 +4,31 @@
     "description": "Blockchain identity management Powered By Ethereum",
     "main": "truffle-config.js",
     "directories": {
-        "test": "test"
+      "test": "test"
     },
     "scripts": {
-        "dev": "lite-server",
-        "start": "nodemon truffle-config.js",
-        "test": "echo \"Error: no test specified\" && exit 1"
+      "dev": "lite-server",
+      "start": "nodemon truffle-config.js",
+      "php-server": "php-server -S localhost:8000 -t ./public",
+      "serve": "npm-run-all --parallel php-server browser-sync",
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "https://github.com/Goat-org",
     "license": "ISC",
     "devDependencies": {
-        "bootstrap": "^4.6.2",
-        "browser-sync": "^3.0.3",
-        "chai": "^4.1.2",
-        "chai-as-promised": "^7.1.1",
-        "chai-bignumber": "^2.0.2",
-        "ganache-cli": "^6.12.2",
-        "lite-server": "^2.3.0",
-        "nodemon": "^3.1.7",
-        "truffle": "^5.11.5"
+      "bootstrap": "^4.6.2",
+      "browser-sync": "^3.0.3",
+      "chai": "^4.1.2",
+      "chai-as-promised": "^7.1.1",
+      "chai-bignumber": "^2.0.2",
+      "ganache-cli": "^6.12.2",
+      "lite-server": "^2.3.0",
+      "nodemon": "^3.1.7",
+      "php-server": "^3.0.1",
+      "npm-run-all": "^4.1.5"
     },
     "dependencies": {
-        "web3": "^4.13.0"
+      "web3": "^4.13.0"
     }
-}
+  }
+  

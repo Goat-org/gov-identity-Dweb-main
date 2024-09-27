@@ -1,5 +1,6 @@
 <?php 
 include("includes/header.php");
+require 'vendor/autoload.php';
 ?>
 </head>
 <body>
