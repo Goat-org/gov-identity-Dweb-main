@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 // server/db_connection.php
 $servername = "localhost";
 $username = "root"; // default XAMPP username
